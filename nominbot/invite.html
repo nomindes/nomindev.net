@@ -1,12 +1,42 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="refresh" content="0;URL=https://nomindev.net/nominbot/pages/commands.html">
-<meta http-equiv="refresh" content="0;URL=https://bit.ly/3W51kTg">
-<title>nominbot</title>
-</head>
-<body>
-<h1>リダイレクト中...</h1>
-</body>
-</html>
+<div class="button_line006">
+  <a target="_blank" href="https://nomindev.net/nominbot/pages/commands.html">コマンドリスト</a>
+  <a target="_blank" href="https://bit.ly/3W51kTg">ボットを招待する</a>
+</div>
+
+.button_line006 a {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 220px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 600;
+}
+.button_line006 a:before,
+.button_line006 a:after {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  content: '';
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  background: #000;
+}
+
+.button_line006 a:before {
+  top: 0;
+  left: 0;
+}
+
+.button_line006 a:after {
+  right: 0;
+  bottom: 0;
+}
+
+.button_line006 a:hover:before,
+.button_line006 a:hover:after {
+  width: 0;
+}
