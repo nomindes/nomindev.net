@@ -1,1 +1,8 @@
-<iframe width="560" height="315" src="https://www.youtube.com/embed/p6fAEH67iWw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/p6fAEH67iWw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<script>
+let iframe = document.getElementById("sub");
+window.addEventListener("load", function () {
+  iframe.style.width = iframe.contentWindow.document.body.scrollWidth + "px";
+  iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
+});
+</script>
