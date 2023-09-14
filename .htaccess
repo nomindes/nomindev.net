@@ -1,5 +1,0 @@
-<IfModule mod_rewrite.c>
-  ExpiresActive On
-  ExpiresByType mp4 "access plus 1 days"
-  ExpiresByType css "access plus 1 days"
-</IfModule>
