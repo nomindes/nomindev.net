@@ -14,6 +14,7 @@ html, body {
 body {
     background: rgb(11, 11, 20);
     font-family: 'Inconsolata', monospace;
+    font-display: swap;
     overflow: hidden;
     position: relative;
 }
