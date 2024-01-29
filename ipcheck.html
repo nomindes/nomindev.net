@@ -3,43 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display IP Address</title>
+    <title>Check ip</title>
+    <script>
+        function getIPAddress() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://api64.ipify.org?format=json", true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    var ipAddress = response.ip;
+
+                    document.getElementById("ipAddress").innerHTML = "Your ip: " + ipAddress;
+                }
+            };
+
+            xhr.send();
+        }
+    </script>
 </head>
 <body>
-<h1>Your IP is <?php echo get_ip_address(); ?></h1>
+    <h1>Check ip</h1>
+    <button onclick="getIPAddress()">Get My ip</button>
+    <p id="ipAddress"></p>
 </body>
 </html>
-
-<?php
-function get_ip_address() {
-    // check for shared internet/ISP IP
-    if (!empty($_SERVER['HTTP_CLIENT_IP']) && validate_ip($_SERVER['HTTP_CLIENT_IP']))
-        return $_SERVER['HTTP_CLIENT_IP'];
-
-    // check for IPs passing through proxies
-    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        // check if multiple ips exist in var
-        $iplist = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-        foreach ($iplist as $ip) {
-            if (validate_ip($ip))
-                return $ip;
-        }
-    }
-
-    if (!empty($_SERVER['HTTP_X_FORWARDED']) && validate_ip($_SERVER['HTTP_X_FORWARDED']))
-        return $_SERVER['HTTP_X_FORWARDED'];
-    if (!empty($_SERVER['HTTP_X_CLUSTER_CLIENT_IP']) && validate_ip($_SERVER['HTTP_X_CLUSTER_CLIENT_IP']))
-        return $_SERVER['HTTP_X_CLUSTER_CLIENT_IP'];
-    if (!empty($_SERVER['HTTP_FORWARDED_FOR']) && validate_ip($_SERVER['HTTP_FORWARDED_FOR']))
-        return $_SERVER['HTTP_FORWARDED_FOR'];
-    if (!empty($_SERVER['HTTP_FORWARDED']) && validate_ip($_SERVER['HTTP_FORWARDED']))
-        return $_SERVER['HTTP_FORWARDED'];
-
-    // return unreliable ip since all else failed
-    return $_SERVER['REMOTE_ADDR'];
-}
-
-function validate_ip($ip) {
-    return filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false;
-}
-?>
